@@ -1,16 +1,6 @@
-/**
- * This file provided by Facebook is for non-commercial testing and evaluation
- * purposes only. Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
-var Comment = React.createClass({
+//var Comment = React.createClass({
+import React from 'react';
+export default class Comment extends React.Component{
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return { __html: rawMarkup };
@@ -18,15 +8,15 @@ var Comment = React.createClass({
 
   render: function() {
     return (
-      <div className="comment">
-        <h2 className="commentAuthor">
+        /*<h2 className="commentAuthor">
           {this.props.author}
-        </h2>
+        </h2>*/
+	  <div className="comment">     
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
   }
-});
+};
 
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -74,7 +64,7 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
-        <h1>Comments</h1>
+        <h1>Hashtags added</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
@@ -86,9 +76,11 @@ var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <Comment author={comment.author} key={comment.id}>
+	  // took out author={comment.author} inside of Comment
+        <Comment key={comment.id}>
           {comment.text}
         </Comment>
+		
       );
     });
     return (
@@ -100,37 +92,45 @@ var CommentList = React.createClass({
 });
 
 var CommentForm = React.createClass({
+// in getInitialState took out author: '',
   getInitialState: function() {
-    return {author: '', text: ''};
+    return { text: ''};
   },
-  handleAuthorChange: function(e) {
+  
+  /*handleAuthorChange: function(e) {
     this.setState({author: e.target.value});
   },
+  */
   handleTextChange: function(e) {
     this.setState({text: e.target.value});
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var author = this.state.author.trim();
+    //var author = this.state.author.trim();
     var text = this.state.text.trim();
-    if (!text || !author) {
+	//took out || !author
+    if (!text) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text});
-    this.setState({author: '', text: ''});
+	//took out author: author, 
+    this.props.onCommentSubmit({text: text});
+	//took out author: '',
+    this.setState({text: ''});
   },
   render: function() {
     return (
-      <form className="commentForm" onSubmit={this.handleSubmit}>
-        <input
+	/* <input
           type="text"
           placeholder="Your name"
           value={this.state.author}
           onChange={this.handleAuthorChange}
         />
+		*/
+      <form className="commentForm" onSubmit={this.handleSubmit}>
+       
         <input
           type="text"
-          placeholder="Say something..."
+          placeholder="Enter hashtag"
           value={this.state.text}
           onChange={this.handleTextChange}
         />

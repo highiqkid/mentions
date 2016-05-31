@@ -7,9 +7,24 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.4.3",
-    "express": "^4.4.5"
+    "draft-js": "^0.7.0",
+    "draft-js-hashtag-plugin": "^1.1.0",
+    "draft-js-linkify-plugin": "^1.0.1",
+    "draft-js-mention-plugin": "^1.1.0",
+    "draft-js-plugins-editor": "^1.1.0",
+    "draft-js-undo-plugin": "^1.0.0",
+    "express": "^4.4.5",
+    "immutable": "^3.8.1",
+    "react-dom": "^15.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -29,7 +44,7 @@
     "url": "https://github.com/reactjs/react-tutorial/issues"
   },
   "homepage": "https://github.com/reactjs/react-tutorial",
-  "engines" : {
-    "node" : "0.12.x"
+  "engines": {
+    "node": "0.12.x"
   }
 }
