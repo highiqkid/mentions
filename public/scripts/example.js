@@ -1,6 +1,4 @@
-//var Comment = React.createClass({
-import React from 'react';
-export default class Comment extends React.Component{
+var Comment = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
     return { __html: rawMarkup };
@@ -16,7 +14,7 @@ export default class Comment extends React.Component{
       </div>
     );
   }
-};
+});
 
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
