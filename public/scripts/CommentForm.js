@@ -1,3 +1,5 @@
+import React from 'react';
+
 var CommentForm = React.createClass({
 // in getInitialState took out author: '',
   getInitialState: function() {
@@ -47,3 +49,4 @@ var CommentForm = React.createClass({
   }
 });
 
+export default CommentForm;

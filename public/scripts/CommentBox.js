@@ -1,4 +1,7 @@
-
+import React from 'react';
+import $ from 'jquery';
+import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -53,3 +56,5 @@ var CommentBox = React.createClass({
     );
   }
 });
+
+export default CommentBox;

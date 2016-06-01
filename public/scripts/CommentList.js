@@ -1,3 +1,5 @@
+import React from 'react';
+import Comment from './Comment';
 
 var CommentList = React.createClass({
   render: function() {
@@ -17,3 +19,5 @@ var CommentList = React.createClass({
     );
   }
 });
+
+export default CommentList;

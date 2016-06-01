@@ -8,9 +8,14 @@ var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/build', express.static(path.join(__dirname, 'public', 'build')));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
