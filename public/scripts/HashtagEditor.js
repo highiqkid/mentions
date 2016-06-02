@@ -5,7 +5,7 @@ import 'draft-js-hashtag-plugin/lib/plugin.css';
 
 const hashtagPlugin = createHashtagPlugin();
 const plugins = [hashtagPlugin];
-const text = `Hi this is Victor #crunchbase
+const text = `Hi this is Victor #ideaflow
 `;
 
 export default class SimpleHashtagEditor extends Component {
