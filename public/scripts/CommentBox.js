@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
+import SimpleHashtagEditor from './HashtagEditor';
 
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -52,6 +53,7 @@ var CommentBox = React.createClass({
         <h1>Hashtags added</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+		<HashtagEditor/>
       </div>
     );
   }
