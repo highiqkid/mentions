@@ -53,7 +53,8 @@ var CommentBox = React.createClass({
         <h1>Hashtags added</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
-		    <HashtagEditor />
+		<br> </br>
+		<HashtagEditor />
       </div>
     );
   }
