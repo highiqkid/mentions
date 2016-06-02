@@ -1,4 +1,5 @@
 import React from 'react';
+import marked from 'marked';
 
 var Comment = React.createClass({
   rawMarkup: function() {
@@ -11,7 +12,7 @@ var Comment = React.createClass({
         /*<h2 className="commentAuthor">
           {this.props.author}
         </h2>*/
-	  <div className="comment">     
+	  <div className="comment">
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
