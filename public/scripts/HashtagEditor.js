@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import editorStyles from '../css/editorStyles.css';
 
 const hashtagPlugin = createHashtagPlugin();
 const plugins = [hashtagPlugin];
@@ -10,17 +9,23 @@ const text = `Hi this is Victor #crunchbase
 
 export default class SimpleHashtagEditor extends Component {
 
-  state = {
-    editorState: createEditorStateWithText(text),
-  };
+  constructor() {
+    super();
+    this.state = {
+      editorState: createEditorStateWithText(text),
+    };
 
-  onChange = (editorState) => {
+    this.onChange = this.onChange.bind(this);
+    this.focus = this.focus.bind(this);
+  }
+
+  onChange(editorState) {
     this.setState({
       editorState,
     });
   };
 
-  focus = () => {
+  focus() {
     this.refs.editor.focus();
   };
 
