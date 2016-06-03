@@ -2,7 +2,9 @@ import React from 'react';
 import $ from 'jquery';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
+import MentionEditor from './MentionEditor';
 import HashtagEditor from './HashtagEditor';
+import CarrotEditor from './CarrotEditor';
 
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -53,7 +55,12 @@ var CommentBox = React.createClass({
         <h1>Hashtags added</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+		<h3> Mentions Autocomplete </h3>
+		<MentionEditor />
+		<h3> Hashtag Autocomplete </h3>
 		<HashtagEditor />
+		<h3> Carrot Autocomplete </h3>
+		<CarrotEditor />
       </div>
     );
   }

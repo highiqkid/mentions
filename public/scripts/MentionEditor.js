@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-hashtags-plugin';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 //import editorStyles from '../css/base.css';
-import hashtags from './Hashtags';
-import 'draft-js-hashtags-plugin/lib/plugin.css';
+import mentions from './mentions';
+import 'draft-js-mention-plugin/lib/plugin.css';
 
 const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-export default class SimpleHashtagEditor extends Component {
+export default class SimpleMentionEditor extends Component {
 	
 constructor() {
     super();
     this.state = {
         editorState: EditorState.createEmpty(),
-		suggestions: hashtags.hashtags,
+		suggestions: mentions.mentions,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -34,7 +34,7 @@ constructor() {
 
   onSearchChange({ value }){
     this.setState({
-      suggestions: defaultSuggestionsFilter(value, hashtags),
+      suggestions: defaultSuggestionsFilter(value, mentions),
     });
   };
 
