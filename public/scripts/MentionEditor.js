@@ -9,6 +9,13 @@ import 'draft-js-carrot-plugin/lib/plugin.css';
 import mentions from './mentions';
 import 'draft-js-mention-plugin/lib/plugin.css';
 
+import createHashtagsPlugin, { defaultSuggestionsFilterHashtags } from 'draft-js-hashtags-plugin';
+import hashtags from './Hashtags';
+import 'draft-js-hashtags-plugin/lib/plugin.css';
+
+const hashtagsPlugin = createHashtagsPlugin();
+const { HashtagsSuggestions } = hashtagsPlugin;
+
 const carrotPlugin = createCarrotPlugin();
 const { CarrotSuggestions } = carrotPlugin;
 
@@ -18,6 +25,7 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [
   mentionPlugin,
   carrotPlugin,
+  hashtagsPlugin,
 ];
 
 export default class SimpleMentionEditor extends Component {
@@ -26,13 +34,15 @@ constructor() {
     super();
     this.state = {
         editorState: EditorState.createEmpty(),
-		    suggestions: mentions.mentions,
-        suggestionsCarrot: carrots.carrots,
+		    suggestions: mentions,
+        suggestionsCarrot: carrots,
+      suggestionsHashtags: hashtags,
     };
 
     this.onChange = this.onChange.bind(this);
 	  this.onSearchChange = this.onSearchChange.bind(this);
     this.onCarrotSearchChange = this.onCarrotSearchChange.bind(this);
+  this.onHashtagsSearchChange = this.onHashtagsSearchChange.bind(this);
     this.focus = this.focus.bind(this);
   }
 
@@ -51,6 +61,12 @@ constructor() {
   onCarrotSearchChange({ value }){
     this.setState({
       suggestionsCarrot: defaultSuggestionsFilterCarrot(value, carrots),
+    });
+  };
+
+  onHashtagsSearchChange({ value }){
+    this.setState({
+      suggestionsHashtags: defaultSuggestionsFilterHashtags(value, hashtags),
     });
   };
 
@@ -78,6 +94,11 @@ constructor() {
           onSearchChange={ this.onCarrotSearchChange }
           suggestions={ this.state.suggestionsCarrot }
         />
+
+      <HashtagsSuggestions
+        onSearchChange={ this.onHashtagsSearchChange }
+        suggestions={ this.state.suggestionsHashtags }
+      />
 
       </div>
     );

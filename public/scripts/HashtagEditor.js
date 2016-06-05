@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-hashtags-plugin';
+import createHashtagsPlugin, { defaultSuggestionsFilterHashtags } from 'draft-js-hashtags-plugin';
 //import editorStyles from '../css/base.css';
 import hashtags from './Hashtags';
 import 'draft-js-hashtags-plugin/lib/plugin.css';
 
-const mentionPlugin = createMentionPlugin();
-const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
+const hashtagsPlugin = createHashtagsPlugin();
+const { HashtagsSuggestions } = hashtagsPlugin;
+const pluginsHashtags = [hashtagsPlugin];
 
 export default class SimpleHashtagEditor extends Component {
-	
+
 constructor() {
     super();
     this.state = {
         editorState: EditorState.createEmpty(),
-		suggestions: hashtags.hashtags,
+		    suggestionsHashtags: hashtags.hashtags,
     };
 
     this.onChange = this.onChange.bind(this);
-	this.onSearchChange = this.onSearchChange.bind(this);
+	this.onHashtagsSearchChange = this.onHashtagsSearchChange.bind(this);
     this.focus = this.focus.bind(this);
   }
 
@@ -32,9 +32,9 @@ constructor() {
     });
   };
 
-  onSearchChange({ value }){
+  onHashtagsSearchChange({ value }){
     this.setState({
-      suggestions: defaultSuggestionsFilter(value, hashtags),
+      suggestionsHashtags: defaultSuggestionsFilterHashtags(value, hashtags),
     });
   };
 
@@ -48,12 +48,12 @@ constructor() {
         <Editor
           editorState={ this.state.editorState }
           onChange={this.onChange}
-          plugins={plugins}
+          plugins={pluginsHashtags}
           ref="editor"
         />
-        <MentionSuggestions
-          onSearchChange={ this.onSearchChange }
-          suggestions={ this.state.suggestions }
+        <HashtagsSuggestions
+          onSearchChange={ this.onHashtagsSearchChange }
+          suggestions={ this.state.suggestionsHashtags }
         />
       </div>
     );
