@@ -2,22 +2,22 @@ import { fromJS } from 'immutable';
 
 const carrots = fromJS([
   {
-    name: 'wonderful idea',
+    name: 'Idea1',
   },
   {
-    name: 'another wonderful idea',
+    name: 'another'
   },
   {
     name: 'Clouds',
   },
   {
-    name: 'Something cool',
+    name: 'Idea3',
   },
   {
-    name: 'Another something cool',
+    name: 'Idea4',
   },
   {
-    name: 'This is awesome',
+    name: 'Idea5',
   },
 ]);
 

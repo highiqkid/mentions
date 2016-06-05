@@ -20431,19 +20431,7 @@
 	        null,
 	        ' Mentions Autocomplete '
 	      ),
-	      _react2.default.createElement(_MentionEditor2.default, null),
-	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        ' Hashtag Autocomplete '
-	      ),
-	      _react2.default.createElement(_HashtagEditor2.default, null),
-	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        ' Carrot Autocomplete '
-	      ),
-	      _react2.default.createElement(_CarrotEditor2.default, null)
+	      _react2.default.createElement(_MentionEditor2.default, null)
 	    );
 	  }
 	});
@@ -50974,7 +50962,7 @@
 	        var start = _ref2.start;
 	        var end = _ref2.end;
 	        return start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-	        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
+	        anchorOffset > start + 1 /*&& anchorOffset <= end */ // @ is in the text or at the end
 	        ;
 	      });
 	
@@ -51153,6 +51141,7 @@
 	  entityMutability: _react.PropTypes.oneOf(['SEGMENTED', 'IMMUTABLE', 'MUTABLE'])
 	};
 	exports.default = MentionSuggestions;
+
 
 /***/ },
 /* 324 */
@@ -51390,13 +51379,14 @@
 	
 	  // Return the word, using the located bounds to extract it from the string.
 	  return {
-	    word: str.slice(left, right + pos),
+	    word: str.slice(left/*, right + pos*/),
 	    begin: left,
-	    end: right + pos
+	    end: str.length /*right + pos*/
 	  };
 	};
 	
 	exports.default = getWordAt;
+
 
 /***/ },
 /* 329 */
@@ -52488,7 +52478,7 @@
 	
 	var getSearchText = function getSearchText(editorState, selection) {
 	  var anchorKey = selection.getAnchorKey();
-	  var anchorOffset = selection.getAnchorOffset() - 1;
+	  var anchorOffset = selection.getAnchorOffset() - 2;
 	  var currentContent = editorState.getCurrentContent();
 	  var currentBlock = currentContent.getBlockForKey(anchorKey);
 	  var blockText = currentBlock.getText();
@@ -52496,6 +52486,7 @@
 	};
 	
 	exports.default = getSearchText;
+
 
 /***/ },
 /* 344 */
@@ -52686,7 +52677,6 @@
 	var MENTION_REGEX = /(\s|^)<>[\w]*/g;
 	
 	exports.default = function (contentBlock, callback) {
-	  debugger
 	  (0, _findWithRegex2.default)(MENTION_REGEX, contentBlock, callback);
 	};
 
@@ -52854,17 +52844,17 @@
 	var _immutable = __webpack_require__(178);
 	
 	var carrots = (0, _immutable.fromJS)([{
-	  name: 'wonderful idea'
+	  name: 'Idea1'
 	}, {
-	  name: 'another wonderful idea'
+	  name: 'another'
 	}, {
 	  name: 'Clouds'
 	}, {
-	  name: 'Something cool'
+	  name: 'Idea3'
 	}, {
-	  name: 'Another something cool'
+	  name: 'Idea4'
 	}, {
-	  name: 'This is awesome'
+	  name: 'Idea5'
 	}]);
 	
 	exports.default = carrots;
@@ -53703,7 +53693,7 @@
 	        var start = _ref2.start;
 	        var end = _ref2.end;
 	        return start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-	        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
+	        anchorOffset > start + 1 /*&& anchorOffset <= end */ // @ is in the text or at the end
 	        ;
 	      });
 	
@@ -54120,13 +54110,14 @@
 	
 	  // Return the word, using the located bounds to extract it from the string.
 	  return {
-	    word: str.slice(left, right + pos),
+	    word: str.slice(left /*right + pos*/),
 	    begin: left,
-	    end: right + pos
+	    end: str.length /*right + pos */
 	  };
 	};
 	
 	exports.default = getWordAt;
+
 
 /***/ },
 /* 369 */

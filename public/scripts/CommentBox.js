@@ -57,10 +57,6 @@ var CommentBox = React.createClass({
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
 		<h3> Mentions Autocomplete </h3>
 		<MentionEditor />
-		<h3> Hashtag Autocomplete </h3>
-		<HashtagEditor />
-		<h3> Carrot Autocomplete </h3>
-		<CarrotEditor />
       </div>
     );
   }
