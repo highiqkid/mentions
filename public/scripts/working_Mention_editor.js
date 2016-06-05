@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createCarrotPlugin, { defaultSuggestionsFilterCarrot } from 'draft-js-carrot-plugin';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 //import editorStyles from '../css/base.css';
-import carrots from './carrots';
-import 'draft-js-carrot-plugin/lib/plugin.css';
+import mentions from './mentions';
+import 'draft-js-mention-plugin/lib/plugin.css';
 
-const carrotPlugin = createCarrotPlugin();
-const { CarrotSuggestions } = carrotPlugin;
-const plugins = [carrotPlugin];
+const mentionPlugin = createMentionPlugin();
+const { MentionSuggestions } = mentionPlugin;
+const plugins = [mentionPlugin];
 
-export default class SimpleCarrotEditor extends Component {
+export default class SimpleMentionEditor extends Component {
 
 constructor() {
     super();
     this.state = {
         editorState: EditorState.createEmpty(),
-		    suggestions: carrots.carrots,
+		suggestions: mentions.mentions,
     };
 
     this.onChange = this.onChange.bind(this);
-	  this.onSearchChange = this.onSearchChange.bind(this);
+	this.onSearchChange = this.onSearchChange.bind(this);
     this.focus = this.focus.bind(this);
   }
 
@@ -34,7 +34,7 @@ constructor() {
 
   onSearchChange({ value }){
     this.setState({
-      suggestions: defaultSuggestionsFilterCarrot(value, carrots),
+      suggestions: defaultSuggestionsFilter(value, mentions),
     });
   };
 
@@ -51,7 +51,7 @@ constructor() {
           plugins={plugins}
           ref="editor"
         />
-        <CarrotSuggestions
+        <MentionSuggestions
           onSearchChange={ this.onSearchChange }
           suggestions={ this.state.suggestions }
         />

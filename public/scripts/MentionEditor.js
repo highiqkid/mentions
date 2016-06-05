@@ -2,16 +2,23 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+//import createCarrotPlugin, { defaultSuggestionsFilterCarrot } from 'draft-js-carrot-plugin';
+//import carrots from './carrots';
+//import 'draft-js-carrot-plugin/lib/plugin.css';
 //import editorStyles from '../css/base.css';
 import mentions from './mentions';
 import 'draft-js-mention-plugin/lib/plugin.css';
+
+
+//const carrotPlugin = createCarrotPlugin();
+//const { CarrotSuggestions } = carrotPlugin;
 
 const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class SimpleMentionEditor extends Component {
-	
+
 constructor() {
     super();
     this.state = {
