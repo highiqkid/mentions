@@ -8,7 +8,7 @@ import 'draft-js-carrot-plugin/lib/plugin.css';
 
 const carrotPlugin = createCarrotPlugin();
 const { CarrotSuggestions } = carrotPlugin;
-const plugins = [carrotPlugin];
+const pluginsCarrot = [carrotPlugin];
 
 export default class SimpleCarrotEditor extends Component {
 
@@ -16,11 +16,11 @@ constructor() {
     super();
     this.state = {
         editorState: EditorState.createEmpty(),
-		    suggestions: carrots.carrots,
+		    suggestionsCarrot: carrots.carrots,
     };
 
     this.onChange = this.onChange.bind(this);
-	  this.onSearchChange = this.onSearchChange.bind(this);
+	  this.onCarrotSearchChange = this.onCarrotSearchChange.bind(this);
     this.focus = this.focus.bind(this);
   }
 
@@ -32,9 +32,9 @@ constructor() {
     });
   };
 
-  onSearchChange({ value }){
+  onCarrotSearchChange({ value }){
     this.setState({
-      suggestions: defaultSuggestionsFilterCarrot(value, carrots),
+      suggestionsCarrot: defaultSuggestionsFilterCarrot(value, carrots),
     });
   };
 
@@ -48,12 +48,12 @@ constructor() {
         <Editor
           editorState={ this.state.editorState }
           onChange={this.onChange}
-          plugins={plugins}
+          plugins={pluginsCarrot}
           ref="editor"
         />
         <CarrotSuggestions
-          onSearchChange={ this.onSearchChange }
-          suggestions={ this.state.suggestions }
+          onSearchChange={ this.onCarrotSearchChange }
+          suggestions={ this.state.suggestionsCarrot }
         />
       </div>
     );
